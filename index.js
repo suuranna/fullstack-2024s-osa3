@@ -77,7 +77,7 @@ app.delete('/api/persons/:id', (request, response) => {
 })
 
 app.post('/api/persons', (request, response) => {
-  const id = Math.floor(Math.random() * 10000)
+  //const id = Math.floor(Math.random() * 10000)
   console.log(request.body)
   const body = request.body
 
@@ -89,15 +89,18 @@ app.post('/api/persons', (request, response) => {
     return response.status(400).json({ error: 'name must be unique' })
   }
 
-  const person = {
+  const person = new Person({
     name: body.name,
-    number: body.number,
-    id: id.toString()
-  }
+    number: body.number
+    //id: id.toString()
+  })
 
-  persons = persons.concat(person)
+  //persons = persons.concat(person)
 
-  response.json(person)
+  person.save().then(person => {
+    response.json(person)
+  })
+
 })
 
 const PORT = process.env.PORT || 3001
