@@ -23,15 +23,15 @@ const personSchema = new mongoose.Schema({
 const Person = mongoose.model('Person', personSchema)
 
 if (name === undefined && number === undefined) {
-  console.log("phonebook:")
+  console.log('phonebook:')
   Person.find({}).then(result => {
     result.forEach(person => {
-      console.log(person.name + " " + person.number)
+      console.log(person.name + ' ' + person.number)
     })
     mongoose.connection.close()
     setTimeout(() => {
-      process.exit(0); 
-    }, 1000);
+      process.exit(0)
+    }, 1000)
   })
 } else {
   const person = new Person({
