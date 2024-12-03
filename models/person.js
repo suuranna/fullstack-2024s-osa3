@@ -23,7 +23,9 @@ const personSchema = new mongoose.Schema({
   },
   number: {
     type: String,
-    required: true
+    minlength: 8,
+    required: true,
+    match: /^(\d{2,3})-(\d+)$/
   }
 })
 
